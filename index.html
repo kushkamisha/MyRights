@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Copyright-Ledger</title>
+    <script src="vendors/jquery/jquery-3.1.1.min.js"></script>
+    
+    <link rel="stylesheet" href="Style/style.css" type="text/css"/>
+</head>
+<body>
+    <div id="container">
+        <div id="header">
+            <div class="triangle" id="logo_triangle"></div>
+            
+            <img src="images/Logo.svg" id="logo_img">
+            
+            <div id="doc">
+                <div id="page_links">
+                    <div class="link" id="support" tabindex="0">Help</div>
+                    <div class="link" id="home" tabindex="0">Home</div>
+                    <div class="link" id="contact" tabindex="0">Contact us</div>
+                    <div id="select_line"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="page_container">
+            <div class="block">
+                <div id="support_list">
+                    <div class="page">
+                        <div id="corner">
+                            <div id="triangle_shadow"></div>
+                        </div>
+                        <h1><center>This is help page</center></h1>
+                        <center>We will use this font for text</center>
+                    </div>
+                </div>
+
+                <div id="home_list">
+                     <div class="page">
+                         <div id="corner">
+                             <div id="triangle_shadow"></div>
+                         </div>
+
+                        <h1><center>You can add your files here</center></h1>
+                        <br><br>
+                        <form id="download-sector" action="pay.php" name="sent_form" method="post" enctype="multipart/form-data">
+                            <div class="download-tag">Drag or drop file here...</div>
+                            <input id="input" type=file name="uploadfile" onchange="this.form.submit()">
+                        </form>
+                    </div>
+                </div>
+
+                <div id="contact_list">
+                     <div class="page">
+                        <div id="corner">
+                            <div id="triangle_shadow"></div>
+                        </div>
+                        <div id="contact_list_header">
+                            <h1>Контактная страница</h1>
+                        </div>
+                        <div id="aboutus">
+                            <h2>Разработчики</h2>
+                            <table>
+                                <tr>
+                                    <td><img src="images/me.jpg" id="developer_photo"></td>
+                                    <td>
+                                        <div id="developer_text">
+                                            <h2>Misha Kushka</h2>
+                                            Back-end разработчик, реализовал работу с Blockchain<br><br>
+                                            Facebook: <a href="https://www.facebook.com/kushka.misha">https://www.facebook.com/kushka.misha</a><br>
+                                            GitHub: <a href="https://github.com/kushkamisha">https://github.com/kushkamisha</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br>
+                            <table>
+                                <tr>
+                                    <td><img src="images/no-photo.png" id="developer_photo"></td>
+                                    <td>
+                                        <div id="developer_text">
+                                            <h2>Denis Krolevetskyi</h2>
+                                            Я front-end разработчик и создал дизайн<br><br>
+                                            Facebook:
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <br>
+                            <h2>Идея сайта</h2>
+                            <table>
+                                <tr>
+                                    <td><img src="images/no-photo.png" id="developer_photo"></td>
+                                    <td>
+                                        <div id="developer_text">
+                                            <h2>Stanislav Volokh</h2>
+                                            Я идейный вдохновитель и собрал эту замечательную команду<br><br>
+                                            Facebook:
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="footer">
+            <div class="text">&copy; Copyright-Ledger 2016</div>
+            
+            <div class="triangle" id="copyright_triangle"></div>
+            
+            <div class="triangle" id="language_triangle"></div>
+        </div>
+        
+        <div id="language_doc">
+            <img src="images/arrow.svg" id="arrow">
+            
+            <div class="country_blok" id="country_USA">
+                <div class="country">United States</div>
+                <img src="images/USA-flag.svg" class="flag">
+            </div>
+            
+            <div class="country_blok" id="country_Ger">
+                <div class="country">Deutschland</div>
+                <img src="images/Germany-flag.svg" class="flag">
+            </div>
+            
+            <div class="country_blok" id="country_Fr">
+                <div class="country">France</div>
+                <img src="images/Franch-flag.svg" class="flag">
+            </div>
+            
+            <div class="country_blok" id="country_Pol">
+                <div class="country">Polska</div>
+                <img src="images/Poland-flag.svg" class="flag">
+            </div>
+            
+            <div class="country_blok" id="country_Ukr">
+                <div class="country">Україна</div>
+                <img src="images/Ukraine-flag.svg" class="flag">
+            </div>
+            
+            <div class="country_blok" id="country_Rus">
+                <div class="country">Россия</div>
+                <img src="images/Russia-flag.svg" class="flag">
+            </div>
+        </div>
+    </div>  
+    
+    <script type="text/javascript">
+        $(document).ready( function() {
+            var language = 1;// идентификатор языка
+            var position = 2;// выбраный лист
+            var language_doc = false;// активность панели языков
+            
+            var USA_top = 0;
+            var Ger_top = 35;
+            var Fr_top = 70;
+            var Pol_top = 105;
+            var Ukr_top = 140;
+            var Rus_top = 175;
+            
+            /**
+            * основная функция переключения
+            */
+            function page_select(id, position) {
+                Page_marging_left = (60 - 20*position);
+                Line_marging_left = 167.5*(position - 1);
+                
+                $('.block').animate({ 'marginLeft' : + Page_marging_left + "%" });
+                $('#select_line').animate({ 'marginLeft' : + Line_marging_left + "px" });
+                $('#support').css({'color' : "#aaaaaa"});
+                $('#home').css({'color' : "#aaaaaa"});
+                $('#contact').css({'color' : "#aaaaaa"});
+                $(id).css({'color' : "#ffffff"});
+                $(id).focus();
+            }
+            
+            /**
+            * переключение между пунктами меню по нажатию стрелок
+            */
+            document.onkeydown = function(e) {
+                e = e || window.event;
+                
+                if(e.keyCode == 39 && position == 2) {
+                    page_select("#contact", 3);
+                    position = 3;
+                }
+                if(e.keyCode == 39 && position == 1) {
+                    page_select("#home", 2);
+                    position = 2;
+                }
+                if(e.keyCode == 37 && position == 2) {
+                    page_select("#support", 1);
+                    position = 1;
+                }
+                if(e.keyCode == 37 && position == 3) {
+                    page_select("#home", 2);
+                    position = 2;
+                }
+                return true;
+            }
+            
+            /**
+            * переключение по нажатию на пункты меню
+            */
+            $('#support').click(function() {
+                page_select("#support", 1);
+                position = 1;
+            });
+            $('#home').click(function() {
+                page_select("#home", 2);
+                position = 2;
+            });
+            $('#contact').click(function() {
+                page_select("#contact", 3);
+                position = 3;
+            });
+            
+            /**
+            * выделение и перемещение блока региона
+            */
+            function Language(id) {
+                    $('#country_USA').css({'color' : "#aaaaaa"});
+                    $('#country_Ger').css({'color' : "#aaaaaa"});
+                    $('#country_Fr').css( {'color' : "#aaaaaa"});
+                    $('#country_Pol').css({'color' : "#aaaaaa"});
+                    $('#country_Ukr').css({'color' : "#aaaaaa"});
+                    $('#country_Rus').css({'color' : "#aaaaaa"});
+                
+                if(id > USA_top) {
+                    USA_top = USA_top + 35;
+                } else if(id == USA_top) {
+                    USA_top = 0;
+                    language = 1;
+                    $('#country_USA').css({'color' : "#eeeeee"});
+                    $('#home').html("Home");
+                    $('#support').html("Help");
+                    $('#contact').html("Contact us");
+                }
+
+                if(id > Ger_top) {
+                    Ger_top = Ger_top + 35;
+                } else if(id == Ger_top) {
+                    Ger_top = 0;
+                    language = 2;
+                    $('#country_Ger').css({'color' : "#eeeeee"});
+                    $('#home').html("Hauptseite");
+                    $('#support').html("Fragen");
+                    $('#contact').html("Kontakt");
+                }
+                
+                if(id > Fr_top) {
+                    Fr_top = Fr_top + 35;
+                } else if(id == Fr_top) {
+                    Fr_top = 0;
+                    language = 3;
+                    $('#country_Fr').css({'color' : "#eeeeee"});
+                    $('#home').html("Accueil");
+                    $('#support').html("Aider");
+                    $('#contact').html("Contactez");
+                }
+
+                if(id > Pol_top) {
+                    Pol_top = Pol_top + 35;
+                } else if(id == Pol_top) {
+                    Pol_top = 0;
+                    language = 4;
+                    $('#country_Pol').css({'color' : "#eeeeee"});
+                    $('#home').html("Główna");
+                    $('#support').html("Pomoc");
+                    $('#contact').html("Kontakt");
+                }
+                
+                if(id > Ukr_top) {
+                    Ukr_top = Ukr_top + 35;
+                } else if(id == Ukr_top) {
+                    Ukr_top = 0;
+                    language = 5;
+                    $('#country_Ukr').css({'color' : "#eeeeee"});
+                    $('#home').html("Головна");
+                    $('#support').html("Допомога");
+                    $('#contact').html("Контакти");
+                }
+                
+                if(id > Rus_top) {
+                    Rus_top = Rus_top + 35;
+                } else if(id == Rus_top) {
+                    Rus_top = 0;
+                    language = 6;
+                    $('#country_Rus').css({'color' : "#eeeeee"});
+                    $('#home').html("Главная");
+                    $('#support').html("Помощь");
+                    $('#contact').html("Контакты");
+                }
+                
+                $('#country_USA').animate({ 'marginTop' : + USA_top + "px"});
+                $('#country_Ger').animate({ 'marginTop' : + Ger_top + "px"});
+                $('#country_Fr').animate( { 'marginTop' : + Fr_top + "px"} );
+                $('#country_Pol').animate({ 'marginTop' : + Pol_top + "px"});
+                $('#country_Ukr').animate({ 'marginTop' : + Ukr_top + "px"});
+                $('#country_Rus').animate({ 'marginTop' : + Rus_top + "px"});
+            }
+            
+            /**
+            * выбор региона
+            */
+            $('#language_doc').click(function() {
+                if(language_doc == false) {
+                    $('#language_doc').animate({ 'marginBottom' : "0px"}); 
+                    $('#arrow').delay(600).css({'transform': 'rotate(0deg)'});
+                    
+                    language_doc = true;    
+                } else {
+                    $('#language_doc').delay(600).animate({ 'marginBottom' : "-175px"});
+                    $('#arrow').delay(600).css({'transform': 'rotate(-90deg)'});
+                    
+                    language_doc = false;
+                }
+            });
+            
+            /**
+            * закрытие выбора региона по нажатию вне елементал
+            */
+            $(document).mouseup(function (e) {
+                if($('#language_doc').has(e.target).length === 0) {
+                    $('#language_doc').animate({ 'marginBottom' : "-175px"});
+                    $('#arrow').delay(600).animate({'transform': 'rotate(-90deg)'});
+                    
+                    language_doc = false;
+                }
+            });
+
+            $('#country_USA').click(function() { 
+                Language(USA_top);
+            })
+            $('#country_Ger').click(function() { 
+                Language(Ger_top);
+            })
+            $('#country_Fr').click(function() { 
+                Language(Fr_top);
+            })
+            $('#country_Pol').click(function() { 
+                Language(Pol_top);
+            })
+            $('#country_Ukr').click(function() { 
+                Language(Ukr_top);
+            })
+            $('#country_Rus').click(function() { 
+                Language(Rus_top);
+            })
+        });
+    </script>        
+</body>
+</html>

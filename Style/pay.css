@@ -1,0 +1,141 @@
+body {
+	color: #2B2B2B;
+	font-family: 'Arimo', sans-serif;
+}
+
+/*************
+*   header   *
+*************/
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-width: 500px; 
+    height: 45px;
+    z-index: 2;
+    background-color: #303030;
+    box-shadow: 0 0 5px rgba(0,0,0,0.75);
+    overflow: hidden;
+}
+
+/**
+* все треугольники
+*/
+.triangle {
+    position: absolute;
+    background-color: #252525;
+    box-shadow: 0 0 5px rgba(0,0,0,0.75);
+}
+
+/*
+* угол back
+*/
+#back_triangle {
+    height: 200px;
+    width: 600px;
+    left: -250px;
+    transform-origin: 50% 100%;
+    transform: rotate(-45deg);
+}
+
+/*
+* угол копирайта
+*/
+#copyright_triangle {
+    height: 200px;
+    top: -150px;
+    width: 600px;
+    right: -300px;
+    transform-origin: 50% 100%;
+    transform: rotate(-45deg);
+}
+
+/*
+* блок back
+*/
+#back_block {
+    position: absolute;
+    height: 100%;
+    width: 200px;
+    opacity: 0.8;
+}
+#back_block:hover {
+    opacity: 1;
+}
+
+/*
+* стрелка back
+*/
+#back_arrow {
+    position: absolute;
+    top: 5px;
+    height: 35px;
+    width: 35px;
+}
+
+/*
+* текст back
+*/
+#back_text {
+    position: absolute;
+    left: 35px;
+    width: 100px;
+    top: 8px;
+    color: #eeeeee;
+    font-size: 1.5em;
+}
+
+/*
+* копирайт
+*/
+#copyright {
+    position: absolute;
+    top: 12px;
+    right: 11px;
+    z-index: 5;
+    font-size: 1.1em;
+    color: #eeeeee;
+}
+
+/*******************
+*  Page container  *
+*******************/
+#page_container {
+    margin-top: 80px;
+    font-size: 1.25em;
+}
+
+#address {
+    text-align: justify;
+}
+
+table {
+    width: 100%;
+    margin: 0;
+}
+table td {
+    padding: 0 40px;
+}
+
+table td:first-child {
+    width: 40%;
+    min-width: 200px;
+}
+
+table td:last-child {
+    width: 60%;
+    padding: 0 40px 0 0;
+    text-align: justify;
+    vertical-align: top;
+}
+
+#qr_code {
+    width: 100%;
+    height: auto;
+}
+
+#btc_addr {
+    text-align: center;
+    font-weight: bold;
+}
